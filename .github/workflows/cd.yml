@@ -3,6 +3,9 @@ name: CD
 
 on:
   # Runs on pushes targeting the default branch
+  pull_request:
+    branches: [ "main" ]
+  workflow_call:
   push:
     branches: ["main"]
 
@@ -23,7 +26,10 @@ concurrency:
 
 jobs:
   # Single deploy job since we're just deploying
+  ci:
+    uses: ./.github/workflows/ci.yml
   deploy:
+    needs: [ci]
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
