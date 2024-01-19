@@ -3,9 +3,6 @@ name: CD
 
 on:
   # Runs on pushes targeting the default branch
-  pull_request:
-    branches: [ "main" ]
-  workflow_call:
   push:
     branches: ["main"]
 
